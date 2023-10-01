@@ -12,6 +12,12 @@
   --navwidth: 256px;
 }
 
+@media screen and (max-width: 600px) {
+  :root {
+    --header-height: 46px;
+  }
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -222,7 +228,9 @@ body {
     display: flex;
   }
   .searchbar {
-    width: initial;
+    width: 0;
+    visibility: hidden;
+
     position: absolute;
     margin: 0;
     left: 0;
@@ -231,11 +239,21 @@ body {
     background: var(--primary);
     padding: 0 10px;
     z-index: 3;
-    transition: transform 0.3s;
+    transition: transform 0.3s, width 0.3s;
     transform: translate3d(100%, 0, 0);
   }
+  .searchbarform {
+    visibility: hidden;
+  }
+  .searchbar.searchbar.opened .searchbarform {
+    visibility: visible;
+  }
+
   .searchbar.opened {
+    visibility: visible;
+
     transform: translate3d(0, 0, 0);
+    width: initial;
   }
   .back_btn {
     display: flex;
