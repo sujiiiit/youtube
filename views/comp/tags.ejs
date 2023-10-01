@@ -1,0 +1,184 @@
+<style>
+  .main_tags {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: var(--header-height);
+  }
+  .main_tags ul {
+    display: flex;
+    border: 0;
+    list-style: none;
+    overflow-y: auto !important;
+    margin: 0 16px;
+  }
+  .main_tags ul::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .main_tags ul > :first-child {
+    margin-left: 56px;
+  }
+  .main_tags ul > :last-child {
+    margin-right: 56px;
+  }
+  .main_tags ul li {
+    display: block;
+    text-overflow: ellipsis;
+    justify-content: center;
+    white-space: nowrap;
+    margin: 12px;
+    margin-left: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0 12px;
+    transition: background-color 0.5s cubic-bezier(0.05, 0, 0, 1);
+  }
+  .main_tags ul li a {
+    color: #f1f1f1;
+    text-decoration: none;
+    height: 32px;
+    min-width: 12px;
+    box-sizing: border-box;
+    outline: none;
+    overflow: hidden;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: relative;
+    font-family: "Roboto", "Arial", sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  #left-slide-arrow,
+  #right-slide-arrow {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+  }
+  #left-slide-arrow {
+    left: 16px;
+  }
+  #right-slide-arrow {
+    right: 16px;
+  }
+  #left-slide-arrow span,
+  #right-slide-arrow span {
+    display: flex;
+    background: #0f0f0f;
+    justify-content: center;
+    align-items: center;
+  }
+  #left-slide-arrow:after {
+    content: "";
+    background: linear-gradient(to right, #0f0f0f 20%, rgba(33, 33, 33, 0) 80%);
+    width: 50px;
+    pointer-events: none;
+  }
+  #right-slide-arrow::before {
+    content: "";
+    background: linear-gradient(to left, #0f0f0f 20%, rgba(33, 33, 33, 0) 80%);
+    width: 50px;
+    pointer-events: none;
+  }
+  @media screen and (max-width: 500px) {
+    #left-slide-arrow,
+    #right-slide-arrow {
+      display: none;
+    }
+    .main_tags {
+      margin: 0 !important;
+    }
+    .main_tags ul {
+      margin: 0;
+    }
+
+    .main_tags ul > :first-child {
+      margin-left: 10px;
+    }
+    .main_tags ul > :last-child {
+      margin-right: 10px;
+    }
+    .main_tags ul li {
+      margin-top: 0 !important;
+    }
+  }
+</style>
+
+<div class="main_tags">
+  <div id="left-slide-arrow">
+    <span>
+      <button class="icon_btn scroll-left">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M14.96 18.96 8 12l6.96-6.96.71.71L9.41 12l6.25 6.25-.7.71z"
+          ></path>
+        </svg>
+      </button>
+    </span>
+  </div>
+  <ul class="items">
+    <li class="tag_items"><a href="#" title="Korean Drama">Korean Drama</a></li>
+    <li class="tag_items">
+      <a href="#" title="Japanese Drama">Japanese Drama</a>
+    </li>
+    <li class="tag_items">
+      <a href="#" title="Taiwanese Drama">Taiwanese Drama</a>
+    </li>
+    <li class="tag_items">
+      <a href="#" title="Hong Kong Drama">Hong Kong Drama</a>
+    </li>
+    <li class="tag_items">
+      <a href="#" title="Chinese Drama">Chinese Drama</a>
+    </li>
+    <li class="tag_items">
+      <a href="#" title="American Drama">American Drama</a>
+    </li>
+    <li class="tag_items">
+      <a href="#" title="Other Asia Drama">Other Asia Drama</a>
+    </li>
+    <li class="tag_items">
+      <a href="#" title="Thailand Drama">Thailand Drama</a>
+    </li>
+    <li class="tag_items"><a href="#" title="Indian Drama">Indian Drama</a></li>
+    <li class="tag_items"><a href="#" title="other">other</a></li>
+  </ul>
+  <div id="right-slide-arrow">
+    <span>
+      <button class="icon_btn scroll-right">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="m9.4 18.4-.7-.7 5.6-5.6-5.7-5.7.7-.7 6.4 6.4-6.3 6.3z"
+          ></path>
+        </svg>
+      </button>
+    </span>
+  </div>
+</div>
+
+<script>
+  const rightBtn = document.querySelector(".scroll-right");
+  const leftBtn = document.querySelector(".scroll-left");
+
+  rightBtn.addEventListener("click", function (event) {
+    const conent = document.querySelector(".main_tags .items");
+    conent.scrollLeft += 300;
+    event.preventDefault();
+  });
+
+  leftBtn.addEventListener("click", function (event) {
+    const conent = document.querySelector(".main_tags .items");
+    conent.scrollLeft -= 300;
+    event.preventDefault();
+  });
+</script>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <%- include('comp/header.ejs') %>
+    <section class="main">
+      <%- include('comp/nav.ejs') %>
+      <div class="mainContainer" opened>
+        <%- include('comp/tags.ejs') %>
+        <div class="content_grid">
+          <% data.forEach(item => { %>
+          <div class="content_div">
+            <div class="img_cont lazy-bg" data-src="<%= item.imgURL %>"></div>
+            <div class="content_inside">
+              <div class="content_inside_1">
+                <div class="content_name"><%= item.title %></div>
+                <div class="content_info">
+                  <div class="content_ep"><%= item.episodeNumber %></div>
+                  <span class="space_span">&#8226;</span>
+                  <div class="content_time">
+                    <span class="content_posted"><%= item.time %></span>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="content_inside_2">
+                <button class="content_info_btn icon_btn">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 16.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zM10.5 12c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5-1.5.67-1.5 1.5zm0-6c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5-1.5.67-1.5 1.5z"
+                    ></path>
+                  </svg>
+                </button>
+              </div> -->
+            </div>
+          </div>
+          <% }); %>
+          <div id="load-more" data-page="1">
+            <svg class="circle-svg" height="60" width="60">
+              <circle cx="30" cy="30" r="15"></circle>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="/js/script.js"></script>
+    <script src="/js/lazyload.js"></script>
+    <script src="/js/indexmore.js"></script>
+    <script src="/js/autocomplete.js"></script>
+    <script src="/js/search-more.js"></script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "youtube",
+  "version": "1.0.0",
+  "description": "Watch Drama Online for free",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "node index.js"
+  },
+  "author": "Sujiiit",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.5.1",
+    "cheerio": "^1.0.0-rc.12",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2"
+  }
+}
