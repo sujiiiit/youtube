@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Preview</title>
+    <style>
+        #video-container {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        #preview {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="video-container">
+        <video id="video" controls></video>
+        <canvas id="preview" width="640" height="360"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        const videoElement = document.getElementById('video');
+        const previewCanvas = document.getElementById('preview');
+        const videoUrl = 'https://hlsx011.a387e6278d8e06083d813358762e0ac63.com/dstreamhls/5df1d861c0c3494533705825abfd936c/ep.4.v0.1691646123.360.m3u8';
+
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(videoUrl);
+            hls.attachMedia(videoElement);
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                videoElement.play();
+            });
+
+            videoElement.addEventListener('timeupdate', () => {
+                const currentTime = videoElement.currentTime;
+                // Set the desired time for the preview (in seconds)
+                const previewTime = 10;
+                if (currentTime >= previewTime) {
+                    const ctx = previewCanvas.getContext('2d');
+                    ctx.drawImage(videoElement, 0, 0, previewCanvas.width, previewCanvas.height);
+                }
+            });
+        } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+            videoElement.src = videoUrl;
+            videoElement.addEventListener('loadedmetadata', () => {
+                videoElement.play();
+            });
+        }
+    </script>
+</body>
+</html>
